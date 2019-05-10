@@ -1,9 +1,14 @@
-select authors.name, count(path) || ' views' as num_views
+WITH x AS (
+select count(path) || ' views' as num_views, path
 from log
+where log.path like '/article/%'
+group by path
+)
+select authors.name, num_views
+from x
 join articles on
-  substring(log.path from '\/article\/(.*)') = articles.slug
+  substring(x.path from '\/article\/(.*)') = articles.slug
 join authors on
   articles.author = authors.id
-where log.path like '/article/%'
-group by authors.name
+group by authors.name, num_views
 order by num_views asc;

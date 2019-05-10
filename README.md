@@ -1,6 +1,4 @@
 # References used
-
-
 1. http://www.postgresqltutorial.com/postgresql-date/  
   For the formatting of date in query3.sql
 2. https://stackoverflow.com/questions/39154661/postgresql-negative-substring-length-not-allowed-but-no-obvious-violation-in-da  
@@ -9,3 +7,5 @@
   Struggling with not being able to use `as` keyword in `where` clause - discovered ability to use subselect (which was turned into a view) to force name of item  
 4. https://pyformat.info/  
   How to interpolate strings in python for use in for loop of query files  
+5. https://www.cybertec-postgresql.com/en/postgresql-speeding-up-group-by-and-joins/  
+  query2.sql was taking 30 to 60 seconds -- by switching to this WITH format it now runs in only a matter of seconds
