@@ -11,7 +11,7 @@ WITH y AS (
     substring(x.path from '\/article\/(.*)') = articles.slug
   group by articles.author
 )
-select authors.name, y.total_views
+select authors.name, cast(y.total_views as VARCHAR(64)) || ' views'
 from authors
 join y on
   y.author = authors.id

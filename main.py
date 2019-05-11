@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 def read_sql(file_path):
     try:
         sql_src = open(file_path, 'r')
@@ -7,11 +8,20 @@ def read_sql(file_path):
     return file_contents
 
 
-def read_and_print(c, file_path):
-    c.execute(read_sql(file_path))
+def most_views(c, query_file):
+    c.execute(read_sql(query_file))
     res = c.fetchall()
-    if res:
-        print('\n{}'.format(res))
+    for article in res:
+        print('"{}" with {}'.format(article[0], article[1]))
+    print('\n')
+
+
+def dates_errors(c):
+    c.execute(read_sql('query3.sql'))
+    res = c.fetchall()
+    for error_date in res:
+        print('date {} had {} errors'.format(error_date[0], error_date[1]))
+    print('\n')
 
 
 def main():
@@ -19,8 +29,9 @@ def main():
     try:
         db = psycopg2.connect("dbname=news")
         c = db.cursor()
-        for iterator in range(1,4):
-            read_and_print(c, 'query{}.sql'.format(iterator))
+        for iterator in range(1,3):
+            most_views(c, 'query{}.sql'.format(iterator))
+        dates_errors(c)
     finally:
         db.close()
 
