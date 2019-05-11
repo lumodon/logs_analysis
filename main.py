@@ -29,11 +29,12 @@ def main():
     try:
         db = psycopg2.connect("dbname=news")
         c = db.cursor()
-        for iterator in range(1,3):
+        for iterator in range(1, 3):
             most_views(c, 'query{}.sql'.format(iterator))
         dates_errors(c)
     finally:
         db.close()
+
 
 if __name__ == '__main__':
     main()

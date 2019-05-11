@@ -2,11 +2,30 @@
 
 An internal reporting tool for use with the news database provided by Udacity as part of Udacity's Full Stack Developer program
 
-## Setup and Run
+## Installation and Setup
 
-From within project folder perform the following:  
+Prerequisites:  
+For the following applications, ensure they are accessible from your PATH variable  
+1. First you'll need VirtualBox installed on your machine. Find your operating system and install [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
+2. Next you'll need to install [Vagrant](https://www.vagrantup.com/downloads.html)
+
+Then follow these instructions:
 
 ```sh
+ $ git clone https://github.com/udacity/fullstack-nanodegree-vm.git
+ $ cd fullstack-nanodegree-vm/vagrant
+ $ vagrant up
+```
+`vagrant up` may take awhile to download. Wait until it is done before continuing  
+this project is made for python 2.7 -- the vagrant instance will have python 2.7 preinstalled  
+for development on your local machine you can install python 2.7.16 [here](https://www.python.org/downloads/release/python-2716/)  
+```sh
+ $ vagrant ssh
+ $ git clone https://github.com/lumodon/logs_analysis.git
+ $ cd logs_analysis
+ $ wget https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip
+ $ unzip newsdata.zip && rm newsdata.zip
+ $ psql -d news -f newsdata.sql && rm newsdata.sql
  $ pip install -r requirements.txt
  $ python init.py
  $ python main.py
